@@ -14,7 +14,7 @@ export class AreasRepository {
   update(updateDto: Prisma.AreaUpdateArgs) {
     return prismaService.area.update(updateDto);
   }
-  
+
   findFirst(findFirstDto: Prisma.AreaFindFirstArgs) {
     return prismaService.area.findFirst(findFirstDto);
   }
