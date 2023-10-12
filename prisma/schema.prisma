@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(uuid()) @db.Uuid
+  name        String
+  email       String        @unique
+  password    String
+  transaction Transaction[]
+  area        Area[]
+
+  @@map("users")
+}
+
+model Transaction {
+  id          String          @id @default(uuid()) @db.Uuid
+  userId      String          @map("user_id") @db.Uuid
+  name        String
+  description String
+  value       Float
+  date        DateTime
+  type        TransactionType
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+
+  @@map("transaction_type")
+}
+
+model Area {
+  id          String      @id @default(uuid()) @db.Uuid
+  userId      String      @map("user_id") @db.Uuid
+  name        String
+  description String
+  crop        String?
+  areaEvent   AreaEvent[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("areas")
+}
+
+model AreaEvent {
+  id                 String   @id @default(uuid()) @db.Uuid
+  areaId             String   @map("area_id") @db.Uuid
+  name               String
+  description        String
+  fertilizer         String
+  quantityFertilizer Float
+  workforce          String
+  date               DateTime
+
+  user Area @relation(fields: [areaId], references: [id], onDelete: Cascade)
+
+  @@map("area_events")
+}
