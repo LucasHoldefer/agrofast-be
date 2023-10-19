@@ -1,5 +1,6 @@
 export class CustomError extends Error {
   code: number;
+
   constructor(code: number, mensagem: string) {
     super(mensagem);
     this.name = mensagem;

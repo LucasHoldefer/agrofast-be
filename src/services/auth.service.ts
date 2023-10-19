@@ -1,8 +1,7 @@
-import { UsersRepository } from "../database/repositories/user.repository";
 import { compare, hash } from 'bcryptjs';
 import jsonwebtoken from 'jsonwebtoken';
+import { UsersRepository } from '../database/repositories/user.repository';
 import { CustomError } from '../utils/cusomError';
-
 
 export async function createUser(auth: { name: string, email: string, password: string }) {
   const usersRepository = new UsersRepository();
@@ -23,14 +22,13 @@ export async function createUser(auth: { name: string, email: string, password: 
     data: {
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     },
   });
 
   const accessToken = generateAccessToken(user.id);
   return accessToken;
 }
-
 
 export async function authenticateUser(auth: { email: string, password: string }) {
   const usersRepository = new UsersRepository();
@@ -53,9 +51,7 @@ export async function authenticateUser(auth: { email: string, password: string }
 
   const accessToken = generateAccessToken(user.id);
   return accessToken;
-
 }
-
 
 function generateAccessToken(userId: string) {
   return jsonwebtoken.sign({ sub: userId }, process.env.JWT_SECRET, { expiresIn: '10d' });

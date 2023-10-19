@@ -11,7 +11,9 @@ export async function signup(req: Request, res: Response) {
       res.status(erro.code).json({ erro: erro.message });
     }
   }
-};
+
+  return res.status(500);
+}
 
 export async function signin(req: Request, res: Response) {
   try {
@@ -19,7 +21,8 @@ export async function signin(req: Request, res: Response) {
     return res.json(response);
   } catch (erro) {
     if (erro instanceof CustomError) {
-      res.status(erro.code).json({ erro: erro.message });
+      return res.status(erro.code).json({ erro: erro.message });
     }
   }
-};
+  return res.status(500);
+}

@@ -2,12 +2,11 @@ import { type Prisma } from '@prisma/client';
 import { prismaService } from '../prismaService';
 
 export class AreasRepository {
-
   create(createDto: Prisma.AreaCreateArgs) {
     return prismaService.area.create(createDto);
   }
 
-  finAllByUserId(findManyDto: Prisma.AreaFindManyArgs) {
+  findAllByUserId(findManyDto: Prisma.AreaFindManyArgs) {
     return prismaService.area.findMany(findManyDto);
   }
 
@@ -17,5 +16,9 @@ export class AreasRepository {
 
   findFirst(findFirstDto: Prisma.AreaFindFirstArgs) {
     return prismaService.area.findFirst(findFirstDto);
+  }
+
+  delete(findFirstDto: Prisma.AreaDeleteArgs) {
+    return prismaService.area.delete(findFirstDto);
   }
 }
