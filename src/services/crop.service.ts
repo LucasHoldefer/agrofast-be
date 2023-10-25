@@ -1,6 +1,6 @@
 
 import { CropsRepository } from '../database/repositories/crop.respository';
-import { CustomError } from './../utils/cusomError';
+import { CustomError } from '../utils/customError';
 
 export async function listCropService(userId: string, areaId?: any) {
   const cropRepository = new CropsRepository();

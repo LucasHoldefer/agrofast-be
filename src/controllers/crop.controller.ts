@@ -8,7 +8,7 @@ import {
   validateCropUser
 } from '../services/crop.service';
 import { activeUserId } from '../utils/activeUserId';
-import { CustomError } from '../utils/cusomError';
+import { CustomError } from '../utils/customError';
 
 export async function listCrop(req: Request, res: Response) {
   const userId = activeUserId(req.headers.authorization);
@@ -42,6 +42,8 @@ export async function listCropByArea(req: Request, res: Response) {
 
 
 export async function createCrop(req: Request, res: Response) {
+
+
   const userId = activeUserId(req.headers.authorization);
   const { name, description, areaId } = req.body;
 
@@ -57,6 +59,8 @@ export async function createCrop(req: Request, res: Response) {
 }
 
 export async function updateCrop(req: Request, res: Response) {
+
+
   try {
     const { cropId } = req.params;
 

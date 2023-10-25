@@ -4,7 +4,8 @@ import {
   updateAreaService, validateAreaUser
 } from '../services/area.service';
 import { activeUserId } from '../utils/activeUserId';
-import { CustomError } from '../utils/cusomError';
+import { CustomError } from '../utils/customError';
+
 
 export async function listArea(req: Request, res: Response) {
   const userId = activeUserId(req.headers.authorization);
@@ -21,6 +22,9 @@ export async function listArea(req: Request, res: Response) {
 }
 
 export async function createArea(req: Request, res: Response) {
+
+
+
   const userId = activeUserId(req.headers.authorization);
   const { name, description } = req.body;
 

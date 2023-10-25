@@ -1,7 +1,7 @@
 import { compare, hash } from 'bcryptjs';
 import jsonwebtoken from 'jsonwebtoken';
 import { UsersRepository } from '../database/repositories/user.repository';
-import { CustomError } from '../utils/cusomError';
+import { CustomError } from '../utils/customError';
 
 export async function createUser(auth: { name: string, email: string, password: string }) {
   const usersRepository = new UsersRepository();

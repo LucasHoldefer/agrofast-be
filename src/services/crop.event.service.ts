@@ -1,5 +1,5 @@
 
-import { CustomError } from '../utils/cusomError';
+import { CustomError } from '../utils/customError';
 import { CropsEventRepository } from './../database/repositories/crop.event.respository';
 import { CropsRepository } from './../database/repositories/crop.respository';
 

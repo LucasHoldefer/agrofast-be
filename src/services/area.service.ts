@@ -1,5 +1,5 @@
 import { AreasRepository } from '../database/repositories/area.repository';
-import { CustomError } from '../utils/cusomError';
+import { CustomError } from '../utils/customError';
 
 export async function listAreaService(userId: string) {
   const areasRepository = new AreasRepository();
@@ -69,9 +69,7 @@ export async function validateAreaUser(userId: string, transactionId: string) {
     },
   });
 
-  console.log({ isOwner });
-
   if (!isOwner) {
-    throw new CustomError(404, 'Transaction not foud.');
+    throw new CustomError(404, 'Area not foud.');
   }
 }

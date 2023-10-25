@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { activeUserId } from '../utils/activeUserId';
-import { CustomError } from '../utils/cusomError';
+import { CustomError } from '../utils/customError';
 import { createCropEventService, deleteCropEventService, listCropEventService, updateCropEventService, validateCropCropEvent } from './../services/crop.event.service';
 
 export async function listCropEvent(req: Request, res: Response) {
@@ -17,11 +17,12 @@ export async function listCropEvent(req: Request, res: Response) {
   }
 }
 
-
 export async function createCropEvent(req: Request, res: Response) {
-  const { cropId, name, description, fertilizer, quantityFertilizer, workforce, startDate, endDate } = req.body;
 
   try {
+
+    const { cropId, name, description, fertilizer, quantityFertilizer, workforce, startDate, endDate } = req.body;
+
     const response = await createCropEventService({ cropId, name, description, fertilizer, quantityFertilizer, workforce, startDate, endDate });
 
     res.status(200).json(response);
@@ -33,6 +34,8 @@ export async function createCropEvent(req: Request, res: Response) {
 }
 
 export async function updateCropEvent(req: Request, res: Response) {
+
+
   try {
     const { cropEventId } = req.params;
 
